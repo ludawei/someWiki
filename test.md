@@ -1,12 +1,117 @@
-22，app下载（更新）接口：  
-## https://decision-admin.tianqi.cn/Home/test/yrAppDownloadInfo （GET）
+## 1.直报数据接口
+## 接口地址（GET）
+http://12379.tianqi.cn/Extra/getlistofwork
 
 ## 返回值
 字段名 | 类型 | 描述
-|- | :-: | -:
-|dl_url| String | app安装地址
-|expire_time| String| app过期时间
-|size| String| app大小
-|update_info| String| 更新日志
-|update_time| String| 更新时间
-|version| String | 版本号
+- | :-: | -:
+|id| String | id
+|area| String | 地区
+|upload_time| String | 上传时间
+|location| String | 上传位置
+|title| String | 直报标题
+|content | String | 详情
+|type| String | 视频类型（值为imgs或video）
+|user_tel| String | 上传者手机号
+|user_name| String | 上传者姓名
+|user_pic| String | 上传者头像地址
+|comment_count| String | 直报评论数
+|latlon| String | 直报发生的经纬度
+|like_count| String | 点赞数
+|hot_flags | String | 热门标签
+|flags| String | 直报类型标签
+|imgs| Array | 直报图片地址
+|video_url| String | 直报视频地址
+
+## 2.灾情直报接口
+## 接口地址（GET）
+http://12379.tianqi.cn/Extra/get_zqzb
+
+## 返回值
+字段名 | 类型 | 描述
+- | :-: | -:
+|upload_addr| String | 上报地址
+|upload_time| String | 上报时间
+|upload_user| String | 上报人
+|upload_tel| String | 上报人电话
+|type| String | 灾情类型
+|loss | String | 经济损失
+|death| String | 死亡人数
+|info| String | 过程概述
+|desc| String | 灾害影响描述
+|record_id| String | 直报信息编号
+|start_time| String | 开始时间
+|end_time| String | 结束时间
+
+## 3.舆情接口
+## 接口地址（GET）
+http://12379.tianqi.cn/Extra/get_yqlist
+
+## 可选参数
+字段名 | 类型 | 描述
+- | :-: | -:
+|sourceType| String | 信息来源  // "" 全部  01 新闻  02 论坛  03 博客  04 微博 05 平媒  06 微信  07 视频  08 长微博  09 APP  10 评论  99 其他；默认传全部
+|state| String | 噪音过滤  // xx 全部  1 正常  jing 精准  x 过滤 默认传全部
+|haveRepeat| String | 是否去重  // 0 去重  1 不去重 默认不去重
+|btime| String | 开始时间（yyyyMMddHHmmss）默认当前时间往前40秒
+|etime| String | 结束时间（yyyyMMddHHmmss）默认当前时间往前10秒
+|orderName | String | 排序 // 0发布时间 1 采集时间（默认0，返回的数据以发布时间排序，传入1则数据按照采集时间排序)
+|keyWordId| String | 专题ID
+|orientation| String | "" 全部   1 正面  2 负面  3 中性
+|isRead| String | "" 全部信息  0 未读  1 已读
+|classifyId| String | "" 全部信息  0 未读  1 已读
+
+## 返回值
+字段名 | 类型 | 描述
+- | :-: | -:
+|uuid|String|信息唯一ID
+|title|String|标题
+|summary|String|摘要
+|site|String|网站名
+|visitCount|String|访问量
+|reply|String|回复数
+|sourceType|String|信息来源  // "" 全部  01 新闻  02 论坛  03 博客  04 微博 05 平媒  06 微信  07 视频  08 长微博  09 APP  10 评论  99 其他
+|orientation|String|倾向性  // "" 全部   1 正面  2 负面  3 中性
+|channel|String|电视频道
+|column|String|电视栏目
+|keyWord|String|关键词
+|url|String|信息URL
+|imgUrl|String|内容中图片URL
+|vedioUrl|String|视频URL
+|keyWordId|String|专题ID
+|author|String|作者
+|isyj|String|是否预警信息：0 否1 是
+|isread|String|是否已读信息：0 否 1 是
+|ismyattention|String|是否加入我的关注：0 否1 是
+|isfeedback|String|是否已经反馈：0 否1 是
+|simhash|String|计算相似信息值
+|orienLevel|String|倾向性等级：0：旧数据1：确定正面2：疑似正面3：中性4：疑似负面5：确定负面
+|wbAuthPic|String|微博作者头像地址
+|content|String|内容
+|ctime|String|发布时间
+|hot|String|相同信息数量
+
+
+## 4.舆情统计接口
+## 接口地址（GET）
+http://12379.tianqi.cn/Extra/get_yqcount
+
+## 可选参数
+字段名 | 类型 | 描述
+- | :-: | -:
+|sourceType| String | 信息来源  // "" 全部  01 新闻  02 论坛  03 博客  04 微博 05 平媒  06 微信  07 视频  08 长微博  09 APP  10 评论  99 其他；默认传全部
+|state| String | 噪音过滤  // xx 全部  1 正常  jing 精准  x 过滤 默认传全部
+|haveRepeat| String | 是否去重  // 0 去重  1 不去重 默认不去重
+|btime| String | 开始时间（yyyyMMddHHmmss）默认当前时间往前40秒
+|etime| String | 结束时间（yyyyMMddHHmmss）默认当前时间往前10秒
+|orderName | String | 排序 // 0发布时间 1 采集时间（默认0，返回的数据以发布时间排序，传入1则数据按照采集时间排序)
+|keyWordId| String | 专题ID
+|orientation| String | "" 全部   1 正面  2 负面  3 中性
+|isRead| String | "" 全部信息  0 未读  1 已读
+|classifyId| String | "" 全部信息  0 未读  1 已读
+
+## 返回值
+字段名 | 类型 | 描述
+- | :-: | -:
+|totalrows| String | 总数
+|time| String | 耗时
